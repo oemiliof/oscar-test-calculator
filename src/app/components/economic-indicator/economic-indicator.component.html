@@ -65,7 +65,7 @@
       </button>
 
       <button
-        *ngIf="disableForm() && exchangeRates?.usdToColones"
+        *ngIf="!disableForm() && exchangeRates?.usdToColones && convertedAmount"
         mat-raised-button
         class="text-center full-width"
         color="warn"
