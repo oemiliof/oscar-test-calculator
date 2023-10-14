@@ -17,7 +17,7 @@ export class EconomicIndicatorComponent implements OnInit {
   selectedCurrency: string = 'USD'; // Initialize selectedCurrency to 'USD'
   convertedAmount: number = 0; // Initialize convertedAmount to 0
   converterForm: FormGroup; // Initialize the form group
-
+  amountInputPlaceholder: string = 'Amount to convert from CRC to USD'; // Initialize with a default value
   exchangeRates: { usdToColones: number } = { usdToColones: 0 }; // Initialize exchangeRates with usdToColones as 0
   loading: boolean = true; // Initialize loading as true
 
@@ -167,6 +167,10 @@ export class EconomicIndicatorComponent implements OnInit {
 
   // Handle currency change
   onCurrencyChange() {
+    this.amountInputPlaceholder = `Amount to convert from ${
+      this.selectedCurrency === 'USD' ? 'CRC' : 'USD'
+    } to ${this.selectedCurrency === 'USD' ? 'USD' : 'CRC'}`;
+
     if (this.amount > 0) {
       this.convertCurrency();
     } else if (this.convertedAmount > 0) {

@@ -21,12 +21,12 @@
   <mat-card-content>
     <form [formGroup]="converterForm" (ngSubmit)="convertCurrency()">
       <mat-form-field class="full-width">
-        <mat-label>Amount</mat-label>
+        <mat-label>{{ amountInputPlaceholder }}</mat-label>
         <input
           matInput
           type="number"
           formControlName="amount"
-          placeholder="Amount"
+          [placeholder]="amountInputPlaceholder"
           [(ngModel)]="amount"
           [readonly]="disableForm()"
           (keydown)="onAmountKeyDown($event)"
@@ -41,6 +41,7 @@
           formControlName="currency"
           name="currency"
           [disabled]="disableForm()"
+          [(ngModel)]="selectedCurrency"
           (ngModelChange)="onCurrencyChange()"
         >
           <mat-option [value]="'USD'" [disabled]="disableForm()"
