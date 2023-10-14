@@ -1,0 +1,90 @@
+.custom-card {
+  width: 100%;
+  max-width: 400px; /* Adjust the maximum width to your liking */
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2%; /* Default margin-top for smaller screens */
+  align-items: center;
+  justify-content: center;
+
+  /* Responsive margin-top based on screen size */
+  @media screen and (min-width: 768px) {
+    margin-top: 5%; /* Adjust for larger screens */
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin-top: 10%; /* Adjust for even larger screens */
+  }
+}
+
+.custom-card .mat-card-subtitle {
+  margin: 10px 0; /* Add margin to the top and bottom */
+  padding-top: 10px; /* Add top padding */
+}
+
+.custom-card button {
+  margin: 10px 0; /* Add margin to the top and bottom */
+  padding-top: 10px; /* Add top padding */
+}
+
+.full-width {
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-form-field {
+  text-align: center;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.result {
+  text-align: center;
+  margin-top: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-form-field .mat-form-field-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-input-element,
+.mat-select-value {
+  text-align: center;
+}
+
+.mat-raised-button {
+  margin: 0 auto;
+  display: block;
+}
+
+.text-center {
+  font-weight: bold;
+  text-align: center;
+}
+
+.error-message-container {
+  color: red;
+  font-weight: bold;
+}
+
+.success-message-container {
+  color: green;
+  font-weight: bold;
+}
+
+/* Hide the number input spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

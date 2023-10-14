@@ -1,0 +1,78 @@
+<mat-card class="custom-card">
+  <mat-card-header>
+    <mat-card-title>Currency Converter</mat-card-title>
+    <mat-card-subtitle *ngIf="exchangeRates?.usdToColones" class="text-center">
+      Exchange rate:
+      {{ getFormattedAmount(exchangeRates.usdToColones, "CRC") }}
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="converterForm" (ngSubmit)="convertCurrency()">
+      <mat-form-field class="full-width">
+        <mat-label>Amount</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="amount"
+          placeholder="Amount"
+          [(ngModel)]="amount"
+          [readonly]="disableForm()"
+          (keydown)="onAmountKeyDown($event)"
+          class="no-spinners"
+        />
+        <mat-error *ngIf="amount == 0">Amount cannot be 0.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Currency</mat-label>
+        <mat-select
+          formControlName="currency"
+          name="currency"
+          [disabled]="disableForm()"
+          (ngModelChange)="onCurrencyChange()"
+        >
+          <mat-option [value]="'USD'" [disabled]="disableForm()"
+            >Dollars (USD)</mat-option
+          >
+          <mat-option [value]="'CRC'" [disabled]="disableForm()"
+            >Colones (CRC)</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        class="text-center full-width"
+        color="primary"
+        type="submit"
+        [disabled]="disableForm()"
+      >
+        Convert
+      </button>
+
+      <button
+        *ngIf="convertedAmount"
+        mat-raised-button
+        class="text-center full-width"
+        color="warn"
+        (click)="resetCalculator()"
+      >
+        Reset
+      </button>
+    </form>
+
+    <mat-card-content *ngIf="convertedAmount" class="success-message-container">
+      <p class="result success-message-container">
+        Converted Amount:
+        {{ getFormattedAmount(convertedAmount, null) }}
+      </p>
+    </mat-card-content>
+
+    <mat-card-content *ngIf="disableForm()" class="error-message-container">
+      <p class="result">
+        We are sorry, but we are unable to convert your currency at this time.
+      </p>
+    </mat-card-content>
+  </mat-card-content>
+</mat-card>
