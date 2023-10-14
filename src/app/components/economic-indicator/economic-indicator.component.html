@@ -32,11 +32,11 @@
           (keydown)="onAmountKeyDown($event)"
           class="no-spinners"
         />
-        <mat-error *ngIf="amount == 0">Amount cannot be 0.</mat-error>
+        <mat-error *ngIf="amount === 0">Amount cannot be 0.</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <mat-label>Currency</mat-label>
+        <mat-label>Currency to be converted the amount</mat-label>
         <mat-select
           formControlName="currency"
           name="currency"
@@ -54,6 +54,7 @@
       </mat-form-field>
 
       <button
+        *ngIf="!disableForm()"
         mat-raised-button
         class="text-center full-width"
         color="primary"
@@ -64,7 +65,7 @@
       </button>
 
       <button
-        *ngIf="convertedAmount"
+        *ngIf="disableForm() && exchangeRates?.usdToColones"
         mat-raised-button
         class="text-center full-width"
         color="warn"
@@ -74,10 +75,19 @@
       </button>
     </form>
 
+    <button
+      *ngIf="disableForm()"
+      mat-raised-button
+      class="text-center full-width"
+      color="primary"
+      (click)="getIndicator()"
+    >
+      Get Exchange Rate
+    </button>
+
     <mat-card-content *ngIf="convertedAmount" class="success-message-container">
       <p class="result success-message-container">
-        Converted Amount:
-        {{ getFormattedAmount(convertedAmount, null) }}
+        Converted Amount: {{ getFormattedAmount(convertedAmount, null) }}
       </p>
     </mat-card-content>
 
